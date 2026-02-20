@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Timeline</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 40px}
+
+        .timeline-title{font-size:2rem;margin-bottom:50px;text-align:center}
+        .timeline{position:relative;max-width:700px;width:100%}
+        .timeline-line{position:absolute;left:50%;top:0;bottom:0;width:3px;background:rgba(102,252,241,.1);transform:translateX(-50%)}
+        .timeline-line-fill{position:absolute;left:50%;top:0;width:3px;height:0;background:linear-gradient(to bottom,#66FCF1,rgba(102,252,241,.3));transform:translateX(-50%);transition:height 1.5s ease-out;box-shadow:0 0 15px rgba(102,252,241,.3)}
+
+        .timeline-node{position:relative;display:flex;align-items:center;margin-bottom:80px;opacity:0;transition:all .6s ease-out}
+        .timeline-node.visible{opacity:1}
+        .timeline-node:nth-child(odd){flex-direction:row-reverse;text-align:right}
+        .timeline-node:nth-child(odd) .node-content{margin-right:50px}
+        .timeline-node:nth-child(even) .node-content{margin-left:50px}
+
+        .node-dot{position:absolute;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;background:#0B0C10;border:3px solid rgba(102,252,241,.3);z-index:2;transition:all .6s ease-out}
+        .timeline-node.visible .node-dot{border-color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.4);background:rgba(102,252,241,.1)}
+
+        .node-content{width:calc(50% - 30px);background:rgba(31,40,51,.6);backdrop-filter:blur(10px);border:1px solid rgba(102,252,241,.12);border-radius:14px;padding:24px;transition:all .6s ease-out}
+        .timeline-node.visible .node-content{border-color:rgba(102,252,241,.3)}
+        .node-content h3{font-size:1.1rem;margin-bottom:8px}
+        .node-content p{font-size:.95rem;line-height:1.7}
+        .node-year{font-family:'Fira Code',monospace;font-size:.8rem;color:#66FCF1;margin-bottom:6px;display:block}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <h2 class="timeline-title"><i class="fa-solid fa-timeline" style="margin-right:12px"></i>The Journey</h2>
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-line-fill" id="lineFill"></div>
+
+            <div class="timeline-node" data-delay="400">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <span class="node-year">2025</span>
+                    <h3>The Beginning</h3>
+                    <p>Began B.Tech Cybersecurity at VIT Vellore.</p>
+                </div>
+            </div>
+
+            <div class="timeline-node" data-delay="900">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <span class="node-year">2026</span>
+                    <h3>Building Expertise</h3>
+                    <p>Mastering DSA, Web Dev, and ASIC research.</p>
+                </div>
+            </div>
+
+            <div class="timeline-node" data-delay="1400">
+                <div class="node-dot"></div>
+                <div class="node-content">
+                    <span class="node-year">Future</span>
+                    <h3>Battle-Tested</h3>
+                    <p>CTF Competitions & Network Security Internships.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        /* Animate timeline on load */
+        const nodes = document.querySelectorAll('.timeline-node');
+        const lineFill = document.getElementById('lineFill');
+        const timeline = document.querySelector('.timeline');
+
+        function animateTimeline() {
+            const totalH = timeline.offsetHeight;
+            let maxDelay = 0;
+            nodes.forEach((node) => {
+                const delay = parseInt(node.dataset.delay);
+                maxDelay = Math.max(maxDelay, delay);
+                setTimeout(() => {
+                    node.classList.add('visible');
+                }, delay);
+            });
+            // Animate line
+            setTimeout(() => { lineFill.style.height = '100%'; }, 200);
+        }
+        setTimeout(animateTimeline, 300);
+
+        /* Nav */
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(9);
+    </script>
+</body>
+</html>

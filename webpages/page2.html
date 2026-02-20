@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | About Me</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+        .glass-card{background:rgba(31,40,51,.6);backdrop-filter:blur(10px);border:1px solid rgba(102,252,241,.15);border-radius:16px;padding:40px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+
+        .about-container{display:flex;align-items:center;gap:60px;max-width:1000px;flex-wrap:wrap;justify-content:center}
+        .avatar-ring{width:250px;height:250px;border-radius:50%;border:3px solid #66FCF1;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 0 40px rgba(102,252,241,.2),inset 0 0 40px rgba(102,252,241,.05);flex-shrink:0;animation:ringPulse 3s ease-in-out infinite}
+        @keyframes ringPulse{0%,100%{box-shadow:0 0 30px rgba(102,252,241,.2),inset 0 0 30px rgba(102,252,241,.05)}50%{box-shadow:0 0 60px rgba(102,252,241,.4),inset 0 0 60px rgba(102,252,241,.1)}}
+        .avatar-ring i{font-size:80px;color:#66FCF1;opacity:.7}
+        .avatar-ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(102,252,241,.2);animation:spin 12s linear infinite}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .about-card{max-width:500px;animation:slideRight .8s ease-out both;animation-delay:.3s}
+        @keyframes slideRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+        .about-card h2{font-size:1.8rem;margin-bottom:20px}
+        .about-card p{font-size:1.05rem;line-height:1.8;color:#C5C6C7}
+        .about-card .tag{display:inline-block;margin-top:16px;padding:6px 14px;border:1px solid rgba(102,252,241,.3);border-radius:20px;font-family:'Fira Code',monospace;font-size:.8rem;color:#66FCF1}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="about-container">
+            <div class="avatar-ring">
+                <i class="fa-solid fa-user-astronaut"></i>
+            </div>
+            <div class="glass-card about-card">
+                <h2>Introduction & Origin</h2>
+                <p>Hello, I am ANURAG SONI. I am currently in my first year pursuing a B.Tech in Cybersecurity at VIT Vellore. I built this interactive webpage as a modern alternative to a standard presentation, bridging my technical ambitions with effective digital communication.</p>
+                <span class="tag">B.Tech Cybersecurity @ VIT</span>
+                <span class="tag">Year 1</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(1);
+    </script>
+</body>
+</html>

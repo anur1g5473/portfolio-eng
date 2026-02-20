@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Technical Arsenal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;flex-direction:column;gap:30px}
+        .glass-card{background:rgba(31,40,51,.6);backdrop-filter:blur(10px);border:1px solid rgba(102,252,241,.15);border-radius:16px;padding:40px;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+
+        .section-header{text-align:center;margin-bottom:10px}
+        .section-header h2{font-size:1.8rem;margin-bottom:12px}
+        .section-header p{max-width:600px;line-height:1.7;margin:0 auto;font-size:1rem}
+        .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;width:100%}
+        .skill-card{background:rgba(31,40,51,.6);backdrop-filter:blur(10px);border:1px solid rgba(102,252,241,.12);border-radius:14px;padding:28px 24px;text-align:center;transition:all .4s ease;cursor:default}
+        .skill-card:hover{transform:translateY(-8px);box-shadow:0 12px 40px rgba(102,252,241,.15);border-color:rgba(102,252,241,.4)}
+        .skill-card i{font-size:36px;color:#66FCF1;margin-bottom:14px}
+        .skill-card h3{font-size:1.1rem;margin-bottom:8px}
+        .skill-card p{font-size:.85rem;color:#9a9b9e}
+        .counter-section{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:10px}
+        .counter-circle{width:180px;height:180px;border-radius:50%;border:3px solid rgba(102,252,241,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(31,40,51,.5);backdrop-filter:blur(10px);box-shadow:0 0 40px rgba(102,252,241,.1)}
+        .counter-num{font-family:'Fira Code',monospace;font-size:3.5rem;color:#66FCF1;font-weight:700}
+        .counter-label{font-family:'Fira Code',monospace;font-size:.75rem;color:#C5C6C7;margin-top:10px;text-align:center}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="section-header">
+            <h2>Building the Foundation: DSA</h2>
+            <p>Strong software architecture starts with efficient data handling. Currently translating theoretical concepts into optimized code.</p>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-solid fa-layer-group"></i>
+                <h3>Stacks</h3>
+                <p>LIFO structures for expression parsing & backtracking</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-link"></i>
+                <h3>Linked Lists</h3>
+                <p>Dynamic memory allocation & pointer manipulation</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-sitemap"></i>
+                <h3>Trees</h3>
+                <p>Hierarchical data traversal & search operations</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-diagram-project"></i>
+                <h3>Graphs</h3>
+                <p>Network modeling, BFS, DFS & shortest paths</p>
+            </div>
+        </div>
+        <div class="counter-section">
+            <div class="counter-circle">
+                <span class="counter-num" id="counter">0</span>
+                <span style="font-size:.7rem;color:#66FCF1;font-family:'Fira Code',monospace">+</span>
+            </div>
+            <span class="counter-label">LeetCode Problems Solved</span>
+        </div>
+    </div>
+    <script>
+        /* Counter */
+        const target=42;let current=0;
+        const el=document.getElementById('counter');
+        const interval=setInterval(()=>{current++;el.textContent=current;if(current>=target)clearInterval(interval)},50);
+
+        /* Nav */
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(2);
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Leadership</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;overflow:hidden}
+
+        .diagonal-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:900px;transform:skewY(-2deg)}
+        .diagonal-grid>*{transform:skewY(2deg)}
+        .lead-card{background:rgba(31,40,51,.6);backdrop-filter:blur(10px);border:1px solid rgba(102,252,241,.12);border-radius:16px;padding:36px;opacity:0;animation:bounceUp .7s ease-out forwards}
+        @keyframes bounceUp{
+            0%{opacity:0;transform:skewY(2deg) translateY(60px)}
+            60%{transform:skewY(2deg) translateY(-8px)}
+            80%{transform:skewY(2deg) translateY(4px)}
+            100%{opacity:1;transform:skewY(2deg) translateY(0)}
+        }
+        .lead-card:nth-child(1){animation-delay:.1s}
+        .lead-card:nth-child(2){animation-delay:.3s}
+        .lead-card:nth-child(3){animation-delay:.5s}
+        .lead-card:nth-child(4){animation-delay:.7s}
+        .lead-card h2{font-size:1.6rem;margin-bottom:14px}
+        .lead-card p{font-size:1rem;line-height:1.8}
+        .lead-card i.card-icon{font-size:40px;color:#66FCF1;margin-bottom:16px;display:block;filter:drop-shadow(0 0 10px rgba(102,252,241,.3))}
+        .lead-card .stat{font-family:'Fira Code',monospace;font-size:2rem;color:#66FCF1;margin-top:10px}
+        .full-span{grid-column:1/-1}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="diagonal-grid">
+            <div class="lead-card full-span">
+                <i class="fa-solid fa-trophy card-icon"></i>
+                <h2>Beyond the Code: Event Organization</h2>
+                <p>Organizing small-scale competitive gaming events, including RAVI ESPORTS tournaments, has sharpened my skills in team management, technical logistics, and real-time problem-solving.</p>
+            </div>
+            <div class="lead-card">
+                <i class="fa-solid fa-headset card-icon"></i>
+                <h3>Tournament Management</h3>
+                <p>End-to-end coordination of competitive gaming events with real-time infrastructure.</p>
+            </div>
+            <div class="lead-card">
+                <i class="fa-solid fa-users-gear card-icon"></i>
+                <h3>Team Leadership</h3>
+                <p>Managing cross-functional teams and delivering under high-pressure deadlines.</p>
+            </div>
+            <div class="lead-card">
+                <i class="fa-solid fa-server card-icon"></i>
+                <h3>Technical Logistics</h3>
+                <p>Network setup, Instant data transfer and live-stream production.</p>
+                <div class="stat">RAVI ESPORTS</div>
+            </div>
+            <div class="lead-card">
+                <i class="fa-solid fa-bolt card-icon"></i>
+                <h3>Real-Time Problem Solving</h3>
+                <p>Instant troubleshooting and decision-making during live events.</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(7);
+    </script>
+</body>
+</html>

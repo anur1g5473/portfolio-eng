@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Future Trajectory</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+
+        .trajectory-container{display:flex;align-items:center;gap:60px;max-width:1100px;flex-wrap:wrap;justify-content:center}
+        /* Radar */
+        .radar-wrap{position:relative;width:280px;height:280px;flex-shrink:0}
+        .radar-circle{position:absolute;border-radius:50%;border:1px solid rgba(102,252,241,.15);top:50%;left:50%;transform:translate(-50%,-50%)}
+        .radar-c1{width:280px;height:280px}
+        .radar-c2{width:200px;height:200px}
+        .radar-c3{width:120px;height:120px}
+        .radar-c4{width:40px;height:40px;background:rgba(102,252,241,.15)}
+        .radar-line{position:absolute;top:50%;left:50%;width:50%;height:2px;background:linear-gradient(90deg,#66FCF1,transparent);transform-origin:left center;animation:radarSweep 3s linear infinite}
+        @keyframes radarSweep{to{transform:rotate(360deg)}}
+        .radar-crosshair{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+        .radar-crosshair::before,.radar-crosshair::after{content:'';position:absolute;background:rgba(102,252,241,.1)}
+        .radar-crosshair::before{width:1px;height:280px;left:0;top:-140px}
+        .radar-crosshair::after{width:280px;height:1px;top:0;left:-140px}
+        .radar-glow{position:absolute;top:50%;left:50%;width:140px;height:140px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(102,252,241,.08),transparent 70%);animation:radarSweep 3s linear infinite;border-radius:0;clip-path:polygon(50% 50%,100% 0,100% 100%)}
+
+        .right-panel{max-width:550px}
+        .right-panel h2{font-size:1.8rem;margin-bottom:16px}
+        .right-panel>p{font-size:1.05rem;line-height:1.8;margin-bottom:30px}
+        .badges{display:flex;gap:20px;flex-wrap:wrap}
+        .badge{background:rgba(31,40,51,.65);backdrop-filter:blur(10px);border:1px solid rgba(102,252,241,.2);border-radius:14px;padding:24px 20px;text-align:center;width:150px;opacity:0;transform:scale(.7);animation:popIn .5s ease-out forwards}
+        @keyframes popIn{to{opacity:1;transform:scale(1)}}
+        .badge:nth-child(1){animation-delay:.5s}
+        .badge:nth-child(2){animation-delay:1s}
+        .badge:nth-child(3){animation-delay:1.5s}
+        .badge i{font-size:32px;color:#66FCF1;margin-bottom:10px;display:block}
+        .badge h4{font-family:'Fira Code',monospace;font-size:.85rem;color:#66FCF1;margin-bottom:6px}
+        .badge p{font-size:.75rem;color:#9a9b9e}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="trajectory-container">
+            <div class="radar-wrap">
+                <div class="radar-circle radar-c1"></div>
+                <div class="radar-circle radar-c2"></div>
+                <div class="radar-circle radar-c3"></div>
+                <div class="radar-circle radar-c4"></div>
+                <div class="radar-crosshair"></div>
+                <div class="radar-glow"></div>
+                <div class="radar-line"></div>
+            </div>
+            <div class="right-panel">
+                <h2><i class="fa-solid fa-crosshairs" style="margin-right:10px"></i>The Roadmap: Certifications & Battle-Testing</h2>
+                <p>Aggressively targeting CompTIA Security+, CEH, and the OSCP. Expanding hands-on experience by competing in major Capture The Flag (CTF) events to secure a network security internship.</p>
+                <div class="badges">
+                    <div class="badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4>CompTIA Security+</h4>
+                        <p>Foundation certification</p>
+                    </div>
+                    <div class="badge">
+                        <i class="fa-solid fa-user-secret"></i>
+                        <h4>CEH</h4>
+                        <p>Certified Ethical Hacker</p>
+                    </div>
+                    <div class="badge">
+                        <i class="fa-solid fa-skull-crossbones"></i>
+                        <h4>OSCP</h4>
+                        <p>Offensive Security Pro</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(8);
+    </script>
+</body>
+</html>

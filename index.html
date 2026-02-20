@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Cover</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px}
+
+        canvas#matrix{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        .terminal{position:relative;z-index:10;background:rgba(11,12,16,.88);backdrop-filter:blur(16px);border:1px solid rgba(102,252,241,.3);border-radius:14px;width:640px;max-width:92vw;box-shadow:0 0 60px rgba(102,252,241,.08)}
+        .terminal-header{display:flex;align-items:center;gap:8px;padding:14px 18px;border-bottom:1px solid rgba(102,252,241,.15)}
+        .tdot{width:12px;height:12px;border-radius:50%}
+        .terminal-body{padding:28px;font-family:'Fira Code',monospace;font-size:14px;color:#66FCF1;line-height:2.2}
+        .terminal-line{opacity:0;transform:translateY(8px);transition:all .5s ease}
+        .terminal-line.visible{opacity:1;transform:translateY(0)}
+        .cursor{display:inline-block;width:9px;height:17px;background:#66FCF1;animation:blink 1s step-end infinite;vertical-align:middle;margin-left:4px}
+        @keyframes blink{50%{opacity:0}}
+        .enter-btn{display:inline-block;margin-top:20px;padding:14px 36px;background:transparent;border:2px solid #66FCF1;color:#66FCF1;font-family:'Fira Code',monospace;font-size:16px;border-radius:10px;text-decoration:none;animation:pulse 2s ease-in-out infinite;transition:all .3s;opacity:0;cursor:pointer}
+        .enter-btn.visible{opacity:1}
+        .enter-btn:hover{background:#66FCF1;color:#0B0C10;box-shadow:0 0 40px rgba(102,252,241,.5);transform:scale(1.05)}
+        @keyframes pulse{0%,100%{box-shadow:0 0 5px rgba(102,252,241,.3)}50%{box-shadow:0 0 30px rgba(102,252,241,.6)}}
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    <div class="main-content">
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="tdot" style="background:#ff5f56"></div>
+                <div class="tdot" style="background:#ffbd2e"></div>
+                <div class="tdot" style="background:#27c93f"></div>
+                <span style="color:#C5C6C7;font-family:'Fira Code',monospace;font-size:12px;margin-left:12px">terminal@portfolio:~$</span>
+            </div>
+            <div class="terminal-body" id="termBody"></div>
+            <div style="text-align:center;padding:0 28px 28px">
+                <a href="webpages/page2.html" class="enter-btn" id="enterBtn">[ Enter Portfolio ]</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        /* Matrix Rain */
+        const canvas=document.getElementById('matrix'),ctx=canvas.getContext('2d');
+        function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+        resize();window.addEventListener('resize',resize);
+        const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*<>{}[]|/\\';
+        const fs=14;let cols=Math.floor(canvas.width/fs),drops=Array(cols).fill(1);
+        function drawMatrix(){ctx.fillStyle='rgba(11,12,16,0.05)';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='rgba(102,252,241,0.12)';ctx.font=fs+'px Fira Code';for(let i=0;i<drops.length;i++){const t=chars[Math.floor(Math.random()*chars.length)];ctx.fillText(t,i*fs,drops[i]*fs);if(drops[i]*fs>canvas.height&&Math.random()>.975)drops[i]=0;drops[i]++}}
+        setInterval(drawMatrix,40);
+        window.addEventListener('resize',()=>{cols=Math.floor(canvas.width/fs);drops=Array(cols).fill(1)});
+
+        /* Typing Animation */
+        const lines=[
+            '> System Initialized...',
+            '> Name: ANURAG SONI',
+            '> Regs No.: 25BYB0101',
+            '> Course Code: BAENG101',
+            '> Course Name: Technical English Communication',
+            '> LAB Assess No & Title: ASSESSMENT 3 -PORTFOLIO',
+            '> Date of Submission: 20th June 2024',
+            '> Institution: VIT VELLORE University',
+        ];
+        const tb=document.getElementById('termBody');
+        lines.forEach((line,i)=>{
+            const div=document.createElement('div');div.className='terminal-line';div.textContent=line;
+            if(i===lines.length-1){const c=document.createElement('span');c.className='cursor';div.appendChild(c)}
+            tb.appendChild(div);
+            setTimeout(()=>div.classList.add('visible'),600+i*450);
+        });
+        setTimeout(()=>document.getElementById('enterBtn').classList.add('visible'),600+lines.length*450+400);
+
+        /* Nav */
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function buildNav(cp,isRoot){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?(isRoot?'#':'../index.html'):(isRoot?'webpages/'+FILES[i]:FILES[i]);if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(0,true);
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Academic Coursework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;position:relative;overflow:hidden}
+
+        /* Rotating gears */
+        .gear{position:fixed;opacity:.06;color:#66FCF1;z-index:0;pointer-events:none}
+        .gear-1{font-size:300px;top:-50px;right:-50px;animation:spinGear 30s linear infinite}
+        .gear-2{font-size:220px;bottom:-30px;left:20px;animation:spinGear 25s linear infinite reverse}
+        @keyframes spinGear{to{transform:rotate(360deg)}}
+
+        .course-content{position:relative;z-index:1;max-width:700px;text-align:center}
+        .course-content h2{font-size:2rem;margin-bottom:24px}
+        .course-content p{font-size:1.1rem;line-height:2;color:#C5C6C7}
+        .course-tags{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+        .course-tags span{padding:8px 18px;border:1px solid rgba(102,252,241,.2);border-radius:20px;font-family:'Fira Code',monospace;font-size:.8rem;color:#66FCF1;background:rgba(102,252,241,.05);transition:all .3s}
+        .course-tags span:hover{background:rgba(102,252,241,.15);box-shadow:0 0 15px rgba(102,252,241,.2)}
+    </style>
+</head>
+<body>
+    <i class="fa-solid fa-gear gear gear-1"></i>
+    <i class="fa-solid fa-gear gear gear-2"></i>
+    <div class="main-content">
+        <div class="course-content">
+            <h2>Bridging Technical Execution with Clear Communication</h2>
+            <p>My current coursework reflects an essential balance, pairing rigorous technical labs in programming and networking with professional communication to effectively articulate defense strategies.</p>
+            <div class="course-tags">
+                <span><i class="fa-solid fa-code"></i> Programming Labs</span>
+                <span><i class="fa-solid fa-network-wired"></i> Networking</span>
+                <span><i class="fa-solid fa-comments"></i> Communication</span>
+                <span><i class="fa-solid fa-shield-halved"></i> Security Fundamentals</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(5);
+    </script>
+</body>
+</html>

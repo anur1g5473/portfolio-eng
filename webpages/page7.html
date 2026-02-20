@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Problem Solving</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;flex-direction:column;gap:24px}
+
+        .ide-window{width:100%;max-width:800px;background:#1e1e2e;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);border:1px solid rgba(102,252,241,.1)}
+        .ide-titlebar{display:flex;align-items:center;gap:8px;padding:12px 16px;background:#181825;border-bottom:1px solid #313244}
+        .ide-dot{width:12px;height:12px;border-radius:50%}
+        .ide-tab{margin-left:16px;padding:6px 16px;background:#1e1e2e;border-radius:6px 6px 0 0;font-family:'Fira Code',monospace;font-size:12px;color:#66FCF1;border:1px solid #313244;border-bottom:none}
+        .ide-sidebar{position:absolute;left:0;top:0;bottom:0;width:45px;background:#11111b;border-right:1px solid #313244;display:flex;flex-direction:column;align-items:center;padding-top:12px;gap:16px}
+        .ide-sidebar i{color:#585b70;font-size:16px}
+        .ide-body{position:relative;display:flex;min-height:350px}
+        .ide-gutter{width:50px;padding:16px 8px;text-align:right;color:#585b70;font-family:'Fira Code',monospace;font-size:13px;line-height:1.8;user-select:none;margin-left:45px}
+        .ide-code{flex:1;padding:16px;font-family:'Fira Code',monospace;font-size:13px;line-height:1.8;overflow-x:auto}
+        .ide-code .line{opacity:0;animation:codeFadeIn .5s forwards}
+        @keyframes codeFadeIn{to{opacity:1}}
+        .kw{color:#cba6f7}.fn{color:#89b4fa}.str{color:#a6e3a1}.cm{color:#585b70;font-style:italic}.op{color:#f38ba8}.num{color:#fab387}.var{color:#cdd6f4}.br{color:#f9e2af}.type{color:#89dceb}
+        .ide-statusbar{padding:6px 16px;background:#181825;border-top:1px solid #313244;font-family:'Fira Code',monospace;font-size:11px;color:#585b70;display:flex;justify-content:space-between}
+
+        .heading-area{text-align:center;max-width:700px}
+        .heading-area h2{font-size:1.8rem;margin-bottom:12px}
+        .heading-area p{line-height:1.8;font-size:1.05rem}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="heading-area">
+            <h2><i class="fa-solid fa-bug" style="margin-right:10px"></i>The Debugging Mindset</h2>
+            <p>Whether troubleshooting a broken web application or optimizing an algorithm, my approach is methodical. I break down complex systems to find the missing link or logical flaw.</p>
+        </div>
+        <div class="ide-window">
+            <div class="ide-titlebar">
+                <div class="ide-dot" style="background:#f38ba8"></div>
+                <div class="ide-dot" style="background:#f9e2af"></div>
+                <div class="ide-dot" style="background:#a6e3a1"></div>
+                <div class="ide-tab"><i class="fa-solid fa-code" style="margin-right:6px"></i>solve.py</div>
+            </div>
+            <div class="ide-body">
+                <div class="ide-sidebar">
+                    <i class="fa-solid fa-file-code"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <i class="fa-solid fa-code-branch"></i>
+                    <i class="fa-solid fa-bug"></i>
+                    <i class="fa-solid fa-puzzle-piece"></i>
+                </div>
+                <div class="ide-gutter" id="gutter"></div>
+                <div class="ide-code" id="codeBlock"></div>
+            </div>
+            <div class="ide-statusbar">
+                <span>Python 3.11 — UTF-8</span>
+                <span>Ln 14, Col 1</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const codeLines = [
+            '<span class="cm"># The Debugging Mindset: Binary Search</span>',
+            '<span class="kw">def</span> <span class="fn">binary_search</span>(<span class="var">arr</span>, <span class="var">target</span>):',
+            '    <span class="var">left</span>, <span class="var">right</span> <span class="op">=</span> <span class="num">0</span>, <span class="fn">len</span>(<span class="var">arr</span>) <span class="op">-</span> <span class="num">1</span>',
+            '',
+            '    <span class="kw">while</span> <span class="var">left</span> <span class="op">&lt;=</span> <span class="var">right</span>:',
+            '        <span class="var">mid</span> <span class="op">=</span> (<span class="var">left</span> <span class="op">+</span> <span class="var">right</span>) <span class="op">//</span> <span class="num">2</span>',
+            '',
+            '        <span class="kw">if</span> <span class="var">arr</span>[<span class="var">mid</span>] <span class="op">==</span> <span class="var">target</span>:',
+            '            <span class="kw">return</span> <span class="var">mid</span>  <span class="cm"># Target found</span>',
+            '        <span class="kw">elif</span> <span class="var">arr</span>[<span class="var">mid</span>] <span class="op">&lt;</span> <span class="var">target</span>:',
+            '            <span class="var">left</span> <span class="op">=</span> <span class="var">mid</span> <span class="op">+</span> <span class="num">1</span>',
+            '        <span class="kw">else</span>:',
+            '            <span class="var">right</span> <span class="op">=</span> <span class="var">mid</span> <span class="op">-</span> <span class="num">1</span>',
+            '',
+            '    <span class="kw">return</span> <span class="op">-</span><span class="num">1</span>  <span class="cm"># Not found</span>'
+        ];
+        const gutter = document.getElementById('gutter');
+        const codeBlock = document.getElementById('codeBlock');
+        codeLines.forEach((line, i) => {
+            const gLine = document.createElement('div');
+            gLine.textContent = i + 1;
+            gutter.appendChild(gLine);
+
+            const cLine = document.createElement('div');
+            cLine.className = 'line';
+            cLine.innerHTML = line || '&nbsp;';
+            cLine.style.animationDelay = (i * 0.15) + 's';
+            codeBlock.appendChild(cLine);
+        });
+
+        /* Nav */
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(6);
+    </script>
+</body>
+</html>

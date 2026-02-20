@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Academic Research</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;position:relative}
+
+        /* Circuit SVG background */
+        .circuit-bg{position:fixed;top:0;left:60px;right:0;bottom:0;opacity:.04;z-index:0;pointer-events:none}
+        .research-card{position:relative;z-index:1;max-width:750px;width:100%;background:rgba(31,40,51,.55);backdrop-filter:blur(14px);border:2px solid rgba(102,252,241,.2);border-radius:20px;padding:50px;box-shadow:0 8px 40px rgba(0,0,0,.3);animation:breathe 4s ease-in-out infinite}
+        @keyframes breathe{0%,100%{border-color:rgba(102,252,241,.15);box-shadow:0 0 20px rgba(102,252,241,.05)}50%{border-color:rgba(102,252,241,.45);box-shadow:0 0 50px rgba(102,252,241,.12)}}
+        .research-card h2{font-size:1.8rem;margin-bottom:20px}
+        .research-card p{font-size:1.05rem;line-height:1.9;color:#C5C6C7}
+        .research-card .icon-row{display:flex;gap:16px;margin-top:24px}
+        .research-card .icon-row span{display:flex;align-items:center;gap:8px;font-family:'Fira Code',monospace;font-size:.8rem;color:#66FCF1;padding:6px 14px;border:1px solid rgba(102,252,241,.2);border-radius:8px}
+    </style>
+</head>
+<body>
+    <!-- Circuit board SVG background pattern -->
+    <svg class="circuit-bg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                <path d="M10 10h30v0h10v30h-10v10h30v-10h10v-30h20" fill="none" stroke="#66FCF1" stroke-width="1"/>
+                <circle cx="10" cy="10" r="3" fill="#66FCF1"/>
+                <circle cx="50" cy="10" r="2" fill="#66FCF1"/>
+                <circle cx="50" cy="40" r="3" fill="#66FCF1"/>
+                <circle cx="40" cy="50" r="2" fill="#66FCF1"/>
+                <circle cx="80" cy="50" r="3" fill="#66FCF1"/>
+                <path d="M80 50v30h-30" fill="none" stroke="#66FCF1" stroke-width="1"/>
+                <circle cx="50" cy="80" r="2" fill="#66FCF1"/>
+                <path d="M10 70h20v20" fill="none" stroke="#66FCF1" stroke-width="1"/>
+                <circle cx="30" cy="90" r="2" fill="#66FCF1"/>
+                <path d="M90 10v40" fill="none" stroke="#66FCF1" stroke-width="1"/>
+                <circle cx="90" cy="10" r="2" fill="#66FCF1"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit)"/>
+    </svg>
+    <div class="main-content">
+        <div class="research-card">
+            <h2><i class="fa-solid fa-microchip" style="margin-right:12px"></i>Ongoing Research: ASIC Design</h2>
+            <p>Currently engaged in a multi-disciplinary academic research initiative exploring Application-Specific Integrated Circuit (ASIC) Design tailored for Image Processing, focusing on hardware-level optimizations.</p>
+            <div class="icon-row">
+                <span><i class="fa-solid fa-microchip"></i> ASIC</span>
+                <span><i class="fa-solid fa-image"></i> Image Processing</span>
+                <span><i class="fa-solid fa-bolt"></i> Hardware Optimization</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(3);
+    </script>
+</body>
+</html>

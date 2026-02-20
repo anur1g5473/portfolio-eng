@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Portfolio | Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0B0C10;color:#C5C6C7;font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;animation:fadeIn .8s ease-out}
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        h1,h2,h3{font-family:'Fira Code','Share Tech Mono',monospace;color:#66FCF1}
+        .side-nav{position:fixed;left:0;top:0;height:100vh;width:60px;background:rgba(11,12,16,.95);backdrop-filter:blur(10px);border-right:1px solid rgba(102,252,241,.1);display:flex;flex-direction:column;align-items:center;padding-top:15px;gap:4px;z-index:1000;overflow-y:auto}
+        .side-nav::-webkit-scrollbar{width:0}
+        .side-nav a{width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:#C5C6C7;text-decoration:none;font-size:14px;transition:all .3s ease;position:relative;flex-shrink:0}
+        .side-nav a:hover{background:rgba(102,252,241,.15);color:#66FCF1;box-shadow:0 0 20px rgba(102,252,241,.3)}
+        .side-nav a.active{background:rgba(102,252,241,.2);color:#66FCF1;box-shadow:0 0 15px rgba(102,252,241,.2)}
+        .side-nav a .tip{position:absolute;left:50px;background:rgba(11,12,16,.95);border:1px solid rgba(102,252,241,.3);color:#66FCF1;padding:4px 10px;border-radius:6px;font-size:11px;font-family:'Fira Code',monospace;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+        .side-nav a:hover .tip{opacity:1}
+        .main-content{margin-left:60px;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;gap:40px}
+
+        .connect-heading{font-size:2rem;text-align:center}
+        .connect-cards{display:flex;gap:30px;flex-wrap:wrap;justify-content:center}
+        .connect-card{background:rgba(31,40,51,.6);backdrop-filter:blur(10px);border:1px solid rgba(102,252,241,.12);border-radius:20px;padding:50px 40px;text-align:center;width:220px;transition:all .4s ease;cursor:pointer;text-decoration:none;color:#C5C6C7}
+        .connect-card:hover{transform:scale(1.1);box-shadow:0 0 50px rgba(102,252,241,.3),0 20px 60px rgba(0,0,0,.4);border-color:rgba(102,252,241,.5)}
+        .connect-card i{font-size:56px;color:#66FCF1;margin-bottom:20px;display:block;transition:all .4s}
+        .connect-card:hover i{filter:drop-shadow(0 0 20px rgba(102,252,241,.6));transform:scale(1.1)}
+        .connect-card h3{font-family:'Fira Code',monospace;font-size:1.1rem;color:#66FCF1;margin-bottom:8px}
+        .connect-card p{font-size:.85rem;color:#9a9b9e}
+
+        .connect-card.github:hover{border-color:rgba(255,255,255,.3);box-shadow:0 0 50px rgba(255,255,255,.15),0 20px 60px rgba(0,0,0,.4)}
+        .connect-card.github:hover i{color:#fff}
+        .connect-card.linkedin:hover{border-color:rgba(10,102,194,.5);box-shadow:0 0 50px rgba(10,102,194,.3),0 20px 60px rgba(0,0,0,.4)}
+        .connect-card.linkedin:hover i{color:#0a66c2}
+        .connect-card.email:hover{border-color:rgba(234,67,53,.4);box-shadow:0 0 50px rgba(234,67,53,.2),0 20px 60px rgba(0,0,0,.4)}
+        .connect-card.email:hover i{color:#ea4335}
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <h2 class="connect-heading"><i class="fa-solid fa-satellite-dish" style="margin-right:12px"></i>Let's Build & Secure the Future</h2>
+        <div class="connect-cards">
+            <a href="https://github.com" target="_blank" class="connect-card github">
+                <i class="fa-brands fa-github"></i>
+                <h3>GitHub</h3>
+                <p>View my repositories & open-source contributions</p>
+            </a>
+            <a href="https://linkedin.com" target="_blank" class="connect-card linkedin">
+                <i class="fa-brands fa-linkedin"></i>
+                <h3>LinkedIn</h3>
+                <p>Connect professionally & see my journey</p>
+            </a>
+            <a href="mailto:placeholder@email.com" class="connect-card email">
+                <i class="fa-solid fa-envelope"></i>
+                <h3>Email</h3>
+                <p>Reach out for collaboration or opportunities</p>
+            </a>
+        </div>
+    </div>
+    <script>
+        const PAGES=[{n:"Cover",i:"fa-terminal"},{n:"About",i:"fa-user"},{n:"Skills",i:"fa-code"},{n:"Research",i:"fa-microscope"},{n:"Security",i:"fa-shield-halved"},{n:"Courses",i:"fa-graduation-cap"},{n:"Logic",i:"fa-bug"},{n:"Leadership",i:"fa-trophy"},{n:"Goals",i:"fa-crosshairs"},{n:"Timeline",i:"fa-timeline"},{n:"Connect",i:"fa-link"},{n:"Thanks",i:"fa-heart"}];
+        const FILES=['index.html','page2.html','page3.html','page4.html','page5.html','page6.html','page7.html','page8.html','page9.html','page10.html','page11.html','page12.html'];
+        (function(cp){const nav=document.createElement('nav');nav.className='side-nav';PAGES.forEach((p,i)=>{const a=document.createElement('a');a.href=i===0?'../index.html':FILES[i];if(i===cp)a.className='active';a.innerHTML='<i class="fa-solid '+p.i+'"></i><span class="tip">'+p.n+'</span>';nav.appendChild(a)});document.body.prepend(nav)})(10);
+    </script>
+</body>
+</html>
